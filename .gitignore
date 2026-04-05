@@ -1,7 +1,6 @@
 /vendor
 /.env
 /.env.production
-/.env.example
 /.idea
 /.vscode
 /storage/*.key
