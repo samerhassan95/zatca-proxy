@@ -47,4 +47,22 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    // ZATCA Proxy Configuration
+    'require_api_key' => env('REQUIRE_API_KEY', true),
+    'api_secret_key' => env('API_SECRET_KEY'),
+    'allowed_client_ips' => env('ALLOWED_CLIENT_IPS', ''),
+    'api_rate_limit' => env('API_RATE_LIMIT', 1000),
+    'api_rate_limit_window' => env('API_RATE_LIMIT_WINDOW', 60),
+    
+    // Logging Configuration
+    'enable_request_logging' => env('ENABLE_REQUEST_LOGGING', true),
+    'enable_response_logging' => env('ENABLE_RESPONSE_LOGGING', true),
+    'log_zatca_requests' => env('LOG_ZATCA_REQUESTS', true),
+    'log_zatca_responses' => env('LOG_ZATCA_RESPONSES', true),
+    
+    // Performance Configuration
+    'cache_zatca_responses' => env('CACHE_ZATCA_RESPONSES', true),
+    'cache_ttl' => env('CACHE_TTL', 3600),
+    'enable_compression' => env('ENABLE_COMPRESSION', true),
+
 ];

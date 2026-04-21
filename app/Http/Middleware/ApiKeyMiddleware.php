@@ -11,12 +11,12 @@ class ApiKeyMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         // Skip API key check if not required
-        if (!config('app.require_api_key', true)) {
+        if (!env('REQUIRE_API_KEY', true)) {
             return $next($request);
         }
 
         $apiKey = $request->header('X-API-Key') ?? $request->get('api_key');
-        $expectedApiKey = config('app.api_secret_key');
+        $expectedApiKey = env('API_SECRET_KEY');
 
         if (!$apiKey || !$expectedApiKey || !hash_equals($expectedApiKey, $apiKey)) {
             return response()->json([

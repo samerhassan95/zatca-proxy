@@ -1,7 +1,3 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
-Route::get('/', function () {
-    return response()->json(['service' => 'ZATCA Proxy', 'status' => 'online']);
-});
+// Empty web routes file - using bootstrap routing instead

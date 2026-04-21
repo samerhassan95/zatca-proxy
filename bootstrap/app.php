@@ -10,11 +10,24 @@ return Application::configure(basePath: dirname(__DIR__))
         api: __DIR__.'/../routes/api.php',
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
+        then: function () {
+            // Add root route without middleware
+            Route::get('/', function () {
+                return response()->json([
+                    'service' => 'ZATCA Proxy Service',
+                    'status' => 'online',
+                    'version' => '1.0.0',
+                    'message' => 'API service is running',
+                    'api_endpoints' => '/api/',
+                    'health_check' => '/api/health'
+                ]);
+            });
+        }
     )
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->api(prepend: [
-            \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-        ]);
+        // $middleware->api(prepend: [
+        //     \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+        // ]);
 
         $middleware->alias([
             'api.key' => \App\Http\Middleware\ApiKeyMiddleware::class,

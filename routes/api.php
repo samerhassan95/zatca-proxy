@@ -14,6 +14,22 @@ use App\Http\Controllers\Api\ZatcaProxyController;
 |
 */
 
+// Root endpoint (no authentication required)
+Route::get('/', function () {
+    return response()->json([
+        'service' => 'ZATCA Proxy Service',
+        'status' => 'online',
+        'version' => '1.0.0',
+        'message' => 'API service is running. Use /api/health for health check.',
+        'endpoints' => [
+            'health' => '/api/health',
+            'report' => '/api/zatca/report',
+            'qr-code' => '/api/zatca/qr-code',
+            'stats' => '/api/zatca/stats'
+        ]
+    ]);
+});
+
 // Public health check (no authentication required)
 Route::get('/health', [ZatcaProxyController::class, 'healthCheck']);
 
